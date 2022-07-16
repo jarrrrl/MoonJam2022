@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 770085433618797503}
   - component: {fileID: 4015965066761354987}
   - component: {fileID: 885203847693550247}
-  - component: {fileID: 6679457869588754999}
+  - component: {fileID: 507536813525822708}
   m_Layer: 7
   m_Name: BorpaProjectile
-  m_TagString: Untagged
+  m_TagString: GooSpawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -137,7 +137,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
---- !u!114 &6679457869588754999
+--- !u!114 &507536813525822708
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,6 +146,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5852015681035015179}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13baf4d78e014ae4db032c481dd42b7b, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b0dc1c6e3626014e8c729aedafe920f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GooSpawnerPrefab: {fileID: 6056493535522858605, guid: 1f3d3f6240c642941965cbb20973fe92, type: 3}
