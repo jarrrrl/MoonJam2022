@@ -136,3 +136,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af71745eddd18bc47a27ce0fe78d4bc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GooDropFFXPrefab: {fileID: 8303508878820435993, guid: 0a2bca835cba21c45be99ea683e1d7e4, type: 3}
