@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
+using UnityEngine.InputSystem.Users;
 
-public class CharacterController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     #region serialized fields
     [SerializeField] private float horSpeed = 4f;
@@ -39,8 +40,7 @@ public class CharacterController : MonoBehaviour
     private float defaultGravityScale;
     private float smootDampVar;
     #endregion
-    void Awake()
-    {
+    void Start(){
         rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
         healthController = gameObject.GetComponent<HealthController>();
         currentState = State.grounded;
