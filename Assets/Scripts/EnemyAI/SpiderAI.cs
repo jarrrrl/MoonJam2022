@@ -9,6 +9,8 @@ public class SpiderAI : EnemyAI
     private Transform spiderTransform;
     private Transform playerTransform;
     public LayerMask layerMask;
+    private Vector2 jumpForce;
+    private bool facingRight;
 
     private void Start()
     {
@@ -22,15 +24,15 @@ public class SpiderAI : EnemyAI
         Debug.DrawLine(spiderTransform.position, playerTransform.position);
 
         RaycastHit2D isPlayerInRange = Physics2D.Linecast(spiderTransform.position, playerTransform.position, layerMask);
-        if (!isActive && isPlayerInRange.transform.tag.Equals("Player"))
+        if (!isActive && isPlayerInRange.transform.CompareTag("Player"))
         {
             StartCoroutine(Jump());
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.tag.Equals("Player"))
+        if (collision.collider.CompareTag("Player"))
             Destroy(this.gameObject);
     }
 
@@ -39,8 +41,24 @@ public class SpiderAI : EnemyAI
         isActive = true;
         while (true)
         {
+            if (spiderTransform.position.x < playerTransform.position.x && facingRight) Flip();
+            if (spiderTransform.position.x > playerTransform.position.x && !facingRight) Flip();
+
+            jumpForce = new Vector2(Random.Range(5f, 10f), Random.Range(3f, 5f));
             //jump here
+            if (facingRight)
+                rb.AddForce(new Vector2(-jumpForce.x, jumpForce.y), ForceMode2D.Impulse);
+            else
+                rb.AddForce(new Vector2(jumpForce.x, jumpForce.y), ForceMode2D.Impulse);
             yield return new WaitForSeconds(3f);
         }
+    }
+
+    private void Flip()
+    {
+        facingRight = !facingRight;
+        Vector3 tempVec = spiderTransform.localScale;
+        tempVec.x *= -1;
+        spiderTransform.localScale = tempVec;
     }
 }
