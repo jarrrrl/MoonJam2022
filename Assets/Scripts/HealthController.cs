@@ -30,7 +30,7 @@ public class HealthController : MonoBehaviour
 
     private void KillEntity()
     {
-        Destroy(this.transform);
+        Destroy(gameObject);
         print("Killed");
     }
 }

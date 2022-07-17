@@ -765,7 +765,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 16
+    m_Bits: 96
   attackCooldown: 0.5
 --- !u!212 &894849096
 SpriteRenderer:
