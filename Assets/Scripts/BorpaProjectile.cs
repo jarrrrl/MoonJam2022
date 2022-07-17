@@ -10,7 +10,7 @@ public class BorpaProjectile : Projectile
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.tag.Equals("Enemy") && !collision.tag.Equals("GooSpawner"))
+        if (!collision.tag.Equals("Enemy") && !collision.tag.Equals("GooSpawner") && !collision.tag.Equals("Projectile"))
             Instantiate(GooSpawnerPrefab, this.transform.position, Quaternion.identity);
 
     }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8070460042340473935}
   - component: {fileID: 414475769368107747}
   - component: {fileID: 8000959792258764462}
+  - component: {fileID: 3850998926531290338}
   m_Layer: 0
   m_Name: FoxFire (2)
   m_TagString: Untagged
@@ -123,6 +124,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &3850998926531290338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2869325891314005478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f40dc3ff2d939a47bf6900f603642cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2869325891634527419
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,13 +148,14 @@ GameObject:
   - component: {fileID: 8070460042087683346}
   - component: {fileID: 414475769652155326}
   - component: {fileID: 8000959792479373299}
+  - component: {fileID: 6120981713019746885}
   m_Layer: 0
   m_Name: FoxFire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3166190057183755805
 Transform:
   m_ObjectHideFlags: 0
@@ -246,6 +260,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &6120981713019746885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2869325891634527419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f40dc3ff2d939a47bf6900f603642cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2869325892470840207
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,6 +284,7 @@ GameObject:
   - component: {fileID: 8070460043329548838}
   - component: {fileID: 414475770491401354}
   - component: {fileID: 8000959791101927623}
+  - component: {fileID: 2707575149582108931}
   m_Layer: 0
   m_Name: FoxFire (1)
   m_TagString: Untagged
@@ -369,6 +396,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &2707575149582108931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2869325892470840207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f40dc3ff2d939a47bf6900f603642cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5120515888114023709
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,6 +417,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3352261468050643805}
+  - component: {fileID: 1170910262838044627}
   m_Layer: 0
   m_Name: FireRing
   m_TagString: Untagged
@@ -392,7 +432,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5120515888114023709}
-  m_LocalRotation: {x: 0, y: 0, z: -0.5049043, w: 0.86317533}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -402,7 +442,28 @@ Transform:
   - {fileID: 3166190056933259072}
   m_Father: {fileID: 6067551910881226973}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -60.65}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &1170910262838044627
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5120515888114023709}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &6067551910881226975
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,10 +565,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  projSpeed: 2
+  projSpeed: 200
   foxProjectilePrefab: {fileID: 8351260178347735595, guid: 6e977aabd24654f43979e1ea9fa917ea, type: 3}
-  foxProjectiles: []
-  foxFireRing: {fileID: 0}
+  foxFireRing: {fileID: 5120515888114023709}
+  foxFireProjectiles:
+  - {fileID: 2707575149582108931}
+  - {fileID: 6120981713019746885}
+  - {fileID: 3850998926531290338}
+  playerObject: {fileID: 0}
+  direction: {x: 0, y: 0, z: 1}
 --- !u!60 &6067551910881226946
 PolygonCollider2D:
   m_ObjectHideFlags: 0

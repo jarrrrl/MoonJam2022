@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 507536813525822708}
   m_Layer: 7
   m_Name: BorpaProjectile
-  m_TagString: GooSpawner
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
