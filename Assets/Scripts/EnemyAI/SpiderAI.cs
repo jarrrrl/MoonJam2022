@@ -21,10 +21,11 @@ public class SpiderAI : EnemyAI
     // Update is called once per frame
     void Update()
     {
-        //Debug.DrawLine(spiderTransform.position, playerTransform.position, 0.5f);
+        Debug.DrawLine(spiderTransform.position, playerTransform.position);
 
-        RaycastHit2D isPlayerInRange = Physics2D.Linecast(spiderTransform.position, playerTransform.position, layerMask, 0.5f);
-        if (!isActive && isPlayerInRange.transform.CompareTag("Player"))
+        RaycastHit2D isPlayerInRange = Physics2D.Linecast(spiderTransform.position, playerTransform.position, layerMask);
+        print(isPlayerInRange.distance);
+        if (isPlayerInRange.collider != null && !isActive && isPlayerInRange.transform.CompareTag("Player") && isPlayerInRange.distance <= 6.0f)
         {
             StartCoroutine(Jump());
         }
