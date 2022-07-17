@@ -6,6 +6,7 @@ public class Drip : MonoBehaviour
 {
     public Transform gooDrop;
     private float gooCooldown = 0.5f;
+    public LayerMask layerMask;
     // Update is called once per frame
   
 
@@ -20,8 +21,9 @@ public class Drip : MonoBehaviour
     {
         while (true)
         {
-            Instantiate(gooDrop, new Vector3(Random.Range(-1f, 1f) + this.transform.position.x, this.transform.position.y,
+            Transform gooDroplet = Instantiate(gooDrop, new Vector3(Random.Range(-1f, 1f) + this.transform.position.x, this.transform.position.y,
         this.transform.position.z), Quaternion.identity);
+            if (Physics2D.OverlapCircle(gooDroplet.position, 0.1f, layerMask)) Destroy(gooDroplet.gameObject);
             yield return new WaitForSeconds(gooCooldown);
         }
 

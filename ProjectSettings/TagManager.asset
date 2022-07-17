@@ -8,6 +8,7 @@ TagManager:
   - GooSpawner
   - Projectile
   - NavPoint
+  - Ground
   layers:
   - Default
   - TransparentFX

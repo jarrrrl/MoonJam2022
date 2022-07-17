@@ -34,7 +34,7 @@ public class BorpaAI : EnemyAI
             currentRotation.y += 180;
             borpaTransform.eulerAngles = currentRotation;
 
-            Shoot();
+            if(!isGrounded) Shoot();
         }
 
         Vector2 newVelocity = rb.velocity;

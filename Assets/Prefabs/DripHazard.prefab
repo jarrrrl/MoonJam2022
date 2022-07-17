@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7091099260039250383}
   - component: {fileID: -2493044182738288278}
   - component: {fileID: 5480530715792631737}
+  - component: {fileID: 3875103592752021583}
   m_Layer: 0
   m_Name: DripHazard
   m_TagString: GooSpawner
@@ -99,6 +100,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gooDrop: {fileID: 4987720210256244994, guid: 0b23f33b85b8c4d458a4589558499b32, type: 3}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!61 &5480530715792631737
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -125,3 +129,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &3875103592752021583
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287025251676082162}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

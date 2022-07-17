@@ -12,9 +12,12 @@ public class BorpaProjectile : Projectile
     {
         if (collision.tag.Equals("Player"))
             return; //damage here
-        else if (!collision.tag.Equals("Enemy") && !collision.tag.Equals("GooSpawner") && !collision.tag.Equals("Projectile"))
+        else if (collision.CompareTag("Ground"))
+        {
             Instantiate(GooSpawnerPrefab, this.transform.position, Quaternion.identity);
-        
+            Destroy(gameObject);
+        }
+        else if (!collision.CompareTag("Enemy") && !collision.CompareTag("Projectile")) Destroy(gameObject);
 
     }
 }
