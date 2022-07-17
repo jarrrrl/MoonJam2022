@@ -3,25 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - GooSpawner
+  - Projectile
+  - NavPoint
+  - Ground
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-<<<<<<< Updated upstream
-  - 
-  - 
-  - 
-  - 
-=======
-  - Enemy
-  - Projectile
-  - Player
-  - Decorations/Background
->>>>>>> Stashed changes
   - 
   - 
   - 
