@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoxAI : MonoBehaviour
+public class FoxAI : EnemyAI
 {
     Transform foxTransform;
     Rigidbody2D rb;
