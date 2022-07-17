@@ -41,6 +41,9 @@ public class AttackController : MonoBehaviour
                 //deal damage to every enemy
 <<<<<<< Updated upstream
                 //col.gameObject.GetComponent<HealthController>.ChangeHealth(-1);
+=======
+                //col.gameObject.GetComponent<HealthController>().ChangeHealth(-1);
+>>>>>>> Stashed changes
             }
             timer = attackCooldown;
             //also add swipe animation
