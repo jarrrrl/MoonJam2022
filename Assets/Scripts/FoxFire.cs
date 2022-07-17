@@ -8,8 +8,11 @@ public class FoxFire : Projectile
     private AIDestinationSetter aiDestination;
     private void Start()
     {
-        aiDestination = this.GetComponent<AIDestinationSetter>();
-        aiDestination.target = GameObject.FindGameObjectWithTag("Player").transform;
+        if (this.transform.parent == null)
+        {
+            aiDestination = this.GetComponent<AIDestinationSetter>();
+            aiDestination.target = GameObject.FindGameObjectWithTag("Player").transform;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
