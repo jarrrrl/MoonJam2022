@@ -48,6 +48,7 @@ public class CharacterController : MonoBehaviour
         stopJump = false;
         wallJumpDir = 0f;
         defaultGravityScale = rigidbody2D.gravityScale;
+        GameStateManager.Instance.OnGameStateChanged += OnGameStateChanged;
     }
     void Update()
     {
@@ -167,6 +168,16 @@ public class CharacterController : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().flipX = true;
         else if (rigidbody2D.velocity.x < -0.01f)
             gameObject.GetComponent<SpriteRenderer>().flipX = false;
+    }
+    private void OnGameStateChanged(GameState newGameState){
+        bool stateSwitch = newGameState == GameState.GamePlay;
+        enabled = stateSwitch;
+        gameObject.GetComponent<Rigidbody2D>().simulated = stateSwitch;
+        gameObject.GetComponent<HealthController>().enabled = stateSwitch;
+        gameObject.GetComponentInChildren<AttackController>().enabled = stateSwitch;
+    }
+    private void OnDestroy(){
+        GameStateManager.Instance.OnGameStateChanged -= OnGameStateChanged;
     }
     private void OnDrawGizmos()
     {
