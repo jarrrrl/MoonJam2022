@@ -7,15 +7,29 @@ public class SkullAI : EnemyAI
 {
 
     private AIDestinationSetter aiDestination;
+    private AIPath aiPath;
+    private Transform playerTransform;
 
     // Start is called before the first frame update
     void Start()
     {
-        aiDestination = this.GetComponent<AIDestinationSetter>();
-        aiDestination.target = GameObject.FindGameObjectWithTag("Player").transform;
+        aiDestination = GetComponent<AIDestinationSetter>();
+        aiPath = GetComponent<AIPath>();
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        aiDestination.target = playerTransform;
     }
 
-
+    private void FixedUpdate()
+    {
+        if (Vector3.Distance(playerTransform.position, transform.position) < 15f)
+        {
+            aiPath.canMove = true;
+        }
+        else
+        {
+            aiPath.canMove = false;
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         /**if (collision.tag.Equals("Player"))

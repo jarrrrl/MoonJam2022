@@ -21,10 +21,8 @@ public class SpiderAI : EnemyAI
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawLine(spiderTransform.position, playerTransform.position);
 
         RaycastHit2D isPlayerInRange = Physics2D.Linecast(spiderTransform.position, playerTransform.position, layerMask);
-        print(isPlayerInRange.distance);
         if (isPlayerInRange.collider != null && !isActive && isPlayerInRange.transform.CompareTag("Player") && isPlayerInRange.distance <= 6.0f)
         {
             StartCoroutine(Jump());
@@ -46,7 +44,6 @@ public class SpiderAI : EnemyAI
             if (spiderTransform.position.x > playerTransform.position.x && !facingRight) Flip();
 
             jumpForce = new Vector2(Random.Range(5f, 10f), Random.Range(3f, 5f));
-            //jump here
             if (facingRight)
                 rb.AddForce(new Vector2(-jumpForce.x, jumpForce.y), ForceMode2D.Impulse);
             else
