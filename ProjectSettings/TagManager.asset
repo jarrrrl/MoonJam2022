@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - GooSpawner
   - Projectile
+  - NavPoint
   layers:
   - Default
   - TransparentFX
