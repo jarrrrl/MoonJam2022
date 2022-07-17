@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class CharacterController : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private float wallJumpMultiplier = 3f;
     [SerializeField] private float smoothTime = 0.3f;
     [SerializeField] private LayerMask wallLayer;
+    [SerializeField] private UnityEvent<Vector2,float> jumpEvent;
     #endregion
     #region  public fields
     public enum State
@@ -23,9 +25,10 @@ public class CharacterController : MonoBehaviour
         air,
         climbing
     }
+    public State currentState;
+    public float wallJumpDir;
     #endregion
     #region  private fields
-    public State currentState;
     private new Rigidbody2D rigidbody2D;
     private HealthController healthController;
     private Vector2 MoveV;
@@ -33,7 +36,6 @@ public class CharacterController : MonoBehaviour
     private Vector2 horBox = new(0.95f, 0.1f);
     private float timer;
     private bool stopJump;
-    private float wallJumpDir;
     private float defaultGravityScale;
     private float smootDampVar;
     #endregion
@@ -185,14 +187,21 @@ public class CharacterController : MonoBehaviour
             {
                 case State.grounded:
                     rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpVelocity);
+                    jumpEvent.Invoke(transform.position,wallJumpDir);
                     break;
                 case State.air:
                     if (timer > 0f)
+                    {
                         rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpVelocity);
+                        jumpEvent.Invoke(transform.position,wallJumpDir);
+                    }
                     break;
                 case State.climbing:
                     if (wallJumpDir != 0f)
+                    {
                         rigidbody2D.velocity = new Vector2(wallJumpDir * horSpeed * wallJumpMultiplier, jumpVelocity);
+                        jumpEvent.Invoke(transform.position,wallJumpDir);
+                    }
                     break;
             }
             currentState = State.air;
