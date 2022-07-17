@@ -20,6 +20,7 @@ public class FoxAI : EnemyAI
     {
         foxTransform = this.transform;
         rb = GetComponent<Rigidbody2D>();
+        playerObject = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(Shoot());
     }
 
@@ -34,9 +35,10 @@ public class FoxAI : EnemyAI
     {
         while (true)
         {
+
             foreach (FoxFire foxFireProjectile in foxFireProjectiles)
             {
-                if (!foxFireProjectile.gameObject.activeSelf)
+                if (!foxFireProjectile.gameObject.activeSelf || Vector3.Distance(transform.position, playerObject.transform.position) > 20f)
                 {
                     yield return null;
                 }
