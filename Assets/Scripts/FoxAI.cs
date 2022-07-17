@@ -32,23 +32,26 @@ public class FoxAI : MonoBehaviour
 
     private IEnumerator Shoot()
     {
-        foreach(FoxFire foxFireProjectile in foxFireProjectiles)
+        while (true)
         {
-            if (!foxFireProjectile.gameObject.activeSelf)
+            foreach (FoxFire foxFireProjectile in foxFireProjectiles)
             {
-                yield return null;
-            }
-            else
-            {
-                yield return new WaitForSeconds(3f);
+                if (!foxFireProjectile.gameObject.activeSelf)
+                {
+                    yield return null;
+                }
+                else
+                {
+                    yield return new WaitForSeconds(3f);
 
-                foxFireProjectile.gameObject.SetActive(false);
-                GameObject foxFireObject = Instantiate(foxProjectilePrefab, foxFireProjectile.transform.position, Quaternion.identity);
-                yield return new WaitForSeconds(10f);
-                Destroy(foxFireObject);
+                    foxFireProjectile.gameObject.SetActive(false);
+                    GameObject foxFireObject = Instantiate(foxProjectilePrefab, foxFireProjectile.transform.position, Quaternion.identity);
+                    yield return new WaitForSeconds(10f);
+                    Destroy(foxFireObject);
 
 
-                foxFireProjectile.gameObject.SetActive(true);
+                    foxFireProjectile.gameObject.SetActive(true);
+                }
             }
         }
     }

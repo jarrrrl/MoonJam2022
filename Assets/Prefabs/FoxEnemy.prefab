@@ -417,7 +417,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3352261468050643805}
-  - component: {fileID: 1170910262838044627}
   m_Layer: 0
   m_Name: FireRing
   m_TagString: Untagged
@@ -443,27 +442,6 @@ Transform:
   m_Father: {fileID: 6067551910881226973}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &1170910262838044627
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5120515888114023709}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1 &6067551910881226975
 GameObject:
   m_ObjectHideFlags: 0
