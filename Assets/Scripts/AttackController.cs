@@ -39,6 +39,8 @@ public class AttackController : MonoBehaviour
             Debug.Log("attacked");
             Collider2D[] colliders = Physics2D.OverlapBoxAll(pos, boxSize, Vector2.Angle(Vector2.right, pos), enemyLayer);
             foreach (Collider2D col in colliders){
+                print("Test");
+
                 //deal damage to every enemy
                 col.gameObject.GetComponent<HealthController>().ChangeHealth(-1);
             }

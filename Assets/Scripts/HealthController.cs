@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class HealthController : MonoBehaviour
 {
-    private float health;
+    public float health;
     // Start is called before the first frame update
     void Start()
     {
-        health = this.GetComponent<EnemyAI>().health;
+        if (CompareTag("Player")) health = 20f;
+        else health = GetComponent<EnemyAI>().health;
     }
 
     // Update is called once per frame
