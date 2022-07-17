@@ -18,7 +18,7 @@ public class SkullAI : EnemyAI
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag.Equals("Player"))
-            Destroy(this.gameObject);
+        /**if (collision.tag.Equals("Player"))
+            Destroy(this.gameObject);*/
     }
 }
