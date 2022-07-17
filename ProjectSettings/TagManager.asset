@@ -11,10 +11,17 @@ TagManager:
   - 
   - Water
   - UI
+<<<<<<< Updated upstream
   - 
   - 
   - 
   - 
+=======
+  - Enemy
+  - Projectile
+  - Player
+  - Decorations/Background
+>>>>>>> Stashed changes
   - 
   - 
   - 

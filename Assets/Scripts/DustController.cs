@@ -8,6 +8,7 @@ public class DustController : MonoBehaviour
     void Awake()
     {
         animator = gameObject.GetComponent<Animator>();
+        GameStateManager.Instance.OnGameStateChanged += OnGameStateChanged;
     }
     public void StartDust(Vector2 pos, float dir)
     {
@@ -27,5 +28,19 @@ public class DustController : MonoBehaviour
                 animator.SetTrigger("StartAnim");
                 break;
         }
+    }
+    private void OnGameStateChanged(GameState newGameState)
+    {
+        bool stateSwitch = newGameState == GameState.GamePlay;
+        enabled = stateSwitch;
+        gameObject.GetComponent<Animator>().enabled = stateSwitch;
+        // gameObject.GetComponent<Rigidbody2D>().simulated = stateSwitch;
+        // gameObject.GetComponent<HealthController>().enabled = stateSwitch;
+        // gameObject.GetComponentInChildren<AttackController>().enabled = stateSwitch;
+    }
+
+    private void OnDestroy()
+    {
+        GameStateManager.Instance.OnGameStateChanged -= OnGameStateChanged;
     }
 }
