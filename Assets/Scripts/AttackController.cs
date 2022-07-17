@@ -39,6 +39,7 @@ public class AttackController : MonoBehaviour
             Collider2D[] colliders = Physics2D.OverlapBoxAll((Vector2)transform.position + pos, boxSize, Vector2.Angle(Vector2.right, pos), enemyLayer);
             foreach (Collider2D col in colliders){
                 //deal damage to every enemy
+<<<<<<< Updated upstream
                 //col.gameObject.GetComponent<HealthController>.ChangeHealth(-1);
             }
             timer = attackCooldown;
