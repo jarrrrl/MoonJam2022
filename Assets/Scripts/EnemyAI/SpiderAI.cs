@@ -5,17 +5,14 @@ using UnityEngine;
 public class SpiderAI : EnemyAI
 {
     private Rigidbody2D rb;
-    private bool isActive = false;
     private Transform spiderTransform;
-    private Transform playerTransform;
     public LayerMask layerMask;
     private Vector2 jumpForce;
-    private bool facingRight;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        spiderTransform = this.transform;
+        spiderTransform = transform;
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
     // Update is called once per frame
@@ -38,11 +35,8 @@ public class SpiderAI : EnemyAI
     private IEnumerator Jump()
     {
         isActive = true;
-        while (true)
+        while (isActive)
         {
-            if (spiderTransform.position.x < playerTransform.position.x && facingRight) Flip();
-            if (spiderTransform.position.x > playerTransform.position.x && !facingRight) Flip();
-
             jumpForce = new Vector2(Random.Range(5f, 10f), Random.Range(3f, 5f));
             if (facingRight)
                 rb.AddForce(new Vector2(-jumpForce.x, jumpForce.y), ForceMode2D.Impulse);
@@ -52,11 +46,4 @@ public class SpiderAI : EnemyAI
         }
     }
 
-    private void Flip()
-    {
-        facingRight = !facingRight;
-        Vector3 tempVec = spiderTransform.localScale;
-        tempVec.x *= -1;
-        spiderTransform.localScale = tempVec;
-    }
 }

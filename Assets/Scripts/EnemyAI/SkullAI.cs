@@ -8,7 +8,6 @@ public class SkullAI : EnemyAI
 
     private AIDestinationSetter aiDestination;
     private AIPath aiPath;
-    private Transform playerTransform;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +20,7 @@ public class SkullAI : EnemyAI
 
     private void FixedUpdate()
     {
-        if (Vector3.Distance(playerTransform.position, transform.position) < 15f)
+        if (isActive)
         {
             aiPath.canMove = true;
         }
