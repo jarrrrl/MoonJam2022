@@ -42,13 +42,6 @@ public class SpiderAI : EnemyAI
         animator.SetBool("inAir", inAir);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.CompareTag("Player"))
-            Destroy(this.gameObject);
-        else if (collision.collider.CompareTag("Enemy")) Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), collision.collider);
-    }
-
     private IEnumerator Jump()
     {
         jumpEnabled = true;

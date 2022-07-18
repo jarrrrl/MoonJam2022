@@ -15,19 +15,11 @@ public class FoxFire : Projectile
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
-        {
-            if(collision.transform.parent != null)
-            {
-                Destroy(gameObject);
-            }
-            else
-            {
-                gameObject.SetActive(false);
-            }
-        }
+        if (collision.CompareTag("Player") && collision.transform.parent != null)
+            collision.GetComponent<HealthController>().ChangeHealth(-1);
+        else gameObject.SetActive(false);
     }
 
 }

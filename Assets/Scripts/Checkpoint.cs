@@ -5,6 +5,7 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour
 {
     private LevelManager levelManager;
+    public GameObject checkpointFFXPrefab;
 
     private void Start()
     {
@@ -14,7 +15,10 @@ public class Checkpoint : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-
+            levelManager.lastCheckpointPos = transform.position;
+            Vector2 heartVec = new(transform.position.x, transform.position.y + 2f);
+            GameObject heartObject = Instantiate(checkpointFFXPrefab, heartVec, Quaternion.identity);
+            Destroy(heartObject, 1f);
         }
     }
 }
