@@ -126,7 +126,7 @@ MonoBehaviour:
   isActive: 0
   enemyMask:
     serializedVersion: 2
-    m_Bits: 63
+    m_Bits: 24
   speed: 3
   borpaProjectilePrefab: {fileID: 5798211902875092702, guid: ecfd9e8690fa46348b526e71e8ea9a59, type: 3}
 --- !u!61 &8456485963812737493
@@ -167,4 +167,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ef1d0dbd1043e1429dc02879b0f7ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0

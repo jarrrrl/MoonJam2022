@@ -36,7 +36,6 @@ public class SpiderAI : EnemyAI
 
         RaycastHit2D isGrounded = Physics2D.Linecast(spiderTransform.position, ((Vector2)spiderTransform.position) + Vector2.down, layerMask);
         Debug.DrawLine(spiderTransform.position, ((Vector2)spiderTransform.position) + Vector2.down);
-        print(isGrounded.distance);
         if (!isGrounded) inAir = true;
         else inAir = false;
         animator.SetBool("inAir", inAir);
@@ -64,6 +63,10 @@ public class SpiderAI : EnemyAI
                 break;
             }
         }
+    }
+    protected override void OnDestroy()
+    {
+        //spider noise here
     }
 
 }

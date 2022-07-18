@@ -48,5 +48,9 @@ public class BorpaAI : EnemyAI
         borpaProjectile.GetComponent<Projectile>().OnShoot(borpaTransform.right.x);
         SoundManager.instance.PlaySound(shootClip);
     }
+    protected override void OnDestroy()
+    {
+        //borpa noise here
+    }
 
 }

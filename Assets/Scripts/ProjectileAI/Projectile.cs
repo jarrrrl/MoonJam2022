@@ -16,6 +16,6 @@ public class Projectile : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
             collision.GetComponent<HealthController>().ChangeHealth(-1);
-        else if (collision.CompareTag("Enemy")) Destroy(gameObject);
+        else if (collision.CompareTag("Ground")) Destroy(gameObject);
     }
 }

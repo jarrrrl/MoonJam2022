@@ -48,4 +48,11 @@ public class EnemyAI : MonoBehaviour
             playerTransform.gameObject.GetComponent<HealthController>().ChangeHealth(-1);
         else if (collision.collider.CompareTag("Enemy")) Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), collision.collider);
     }
+
+
+    protected virtual void OnDestroy()
+    {
+        //play basic sound here
+    }
+
 }
