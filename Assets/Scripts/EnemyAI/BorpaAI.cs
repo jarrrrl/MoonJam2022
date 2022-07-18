@@ -27,21 +27,18 @@ public class BorpaAI : EnemyAI
         bool isBlocked = Physics2D.Linecast(lineCast, lineCast - (Vector2)borpaTransform.right * .1f, enemyMask);
         Debug.DrawLine(lineCast, lineCast - (Vector2)borpaTransform.right * .1f);
 
-        if (isActive)
-        {
             if (!isGrounded || isBlocked)
             {
                 Vector3 currentRotation = borpaTransform.eulerAngles;
                 currentRotation.y += 180;
                 borpaTransform.eulerAngles = currentRotation;
 
-                if (!isGrounded) Shoot();
+                if (!isGrounded && isActive) Shoot();
             }
 
             Vector2 newVelocity = rb.velocity;
             newVelocity.x = -borpaTransform.right.x * speed;
             rb.velocity = newVelocity;
-        }
     }
 
     private void Shoot()

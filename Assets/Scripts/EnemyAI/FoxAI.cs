@@ -14,15 +14,19 @@ public class FoxAI : EnemyAI
     public GameObject playerObject;
     public Vector3 direction = new Vector3(0, 0, 1);
 
+    public float foxFireLastTime = 5f;
+    public float reloadTime = 3f;
+
     private void Start()
     {
-        foxTransform = this.transform;
+        foxTransform = transform;
         playerObject = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(Shoot());
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         foxFireRing.transform.RotateAround(foxTransform.position, direction, projSpeed * Time.deltaTime);
 
     }
@@ -40,11 +44,11 @@ public class FoxAI : EnemyAI
                 }
                 else
                 {
-                    yield return new WaitForSeconds(3f);
+                    yield return new WaitForSeconds(reloadTime);
 
                     foxFireProjectile.gameObject.SetActive(false);
                     GameObject foxFireObject = Instantiate(foxProjectilePrefab, foxFireProjectile.transform.position, Quaternion.identity);
-                    yield return new WaitForSeconds(10f);
+                    yield return new WaitForSeconds(foxFireLastTime);
                     Destroy(foxFireObject);
 
 

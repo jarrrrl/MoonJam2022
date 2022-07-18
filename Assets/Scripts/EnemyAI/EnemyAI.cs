@@ -6,9 +6,9 @@ public class EnemyAI : MonoBehaviour
 {
     public float health = 10f;
     public HealthController healthController;
-    protected bool facingRight = true;
+    protected bool facingRight = false;
     protected Transform playerTransform;
-    protected bool isActive = false;
+    public bool isActive = false;
     protected float activationDistance = 10f;
 
     private void Awake()
@@ -17,7 +17,7 @@ public class EnemyAI : MonoBehaviour
         healthController = GetComponent<HealthController>();
     }
 
-    void FixedUpdate()
+    protected virtual void Update()
     {
         Flip();
         if (Vector3.Distance(transform.position, playerTransform.position) < 10f)
