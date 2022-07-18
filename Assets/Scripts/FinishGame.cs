@@ -13,7 +13,7 @@ public class FinishGame : MonoBehaviour
 
     private void EndGame()
     {
-        SceneManager.LoadScene(SceneManager.GetSceneByName("Cutscene").buildIndex);
+        SceneManager.LoadScene("Cutscene");
 
     }
 }
