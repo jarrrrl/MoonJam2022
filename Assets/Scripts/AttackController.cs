@@ -40,7 +40,7 @@ public class AttackController : MonoBehaviour
             foreach (Collider2D col in colliders){
 
                 //deal damage to every enemy
-                //col.gameObject.GetComponent<HealthController>().ChangeHealth(-1);
+                col.gameObject.GetComponent<HealthController>().ChangeHealth(-1);
             }
             timer = attackCooldown;
             //also add swipe animation

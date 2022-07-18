@@ -17,9 +17,12 @@ public class FoxFire : Projectile
 
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && collision.transform.parent != null)
+        if (collision.CompareTag("Player"))
+        {
             collision.GetComponent<HealthController>().ChangeHealth(-1);
-        else gameObject.SetActive(false);
+            if (collision.transform.parent != null) gameObject.SetActive(false);
+            else Destroy(gameObject);
+        }
     }
 
 }

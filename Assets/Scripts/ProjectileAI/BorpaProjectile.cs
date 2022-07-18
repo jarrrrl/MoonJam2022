@@ -14,6 +14,9 @@ public class BorpaProjectile : Projectile
         {
             SpawnGoo();
         }
+        else if(collision.collider.CompareTag("Player"))
+            collision.collider.GetComponent<HealthController>().ChangeHealth(-1);
+
     }
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
