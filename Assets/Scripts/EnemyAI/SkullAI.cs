@@ -29,6 +29,10 @@ public class SkullAI : EnemyAI
             aiPath.canMove = false;
         }
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player")) collision.GetComponent<HealthController>().ChangeHealth(-1);
+    }
     protected override void OnDestroy()
     {
         //skull noise here
