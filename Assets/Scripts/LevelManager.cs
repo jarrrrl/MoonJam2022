@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
-    public Vector2 lastCheckpointPos;
+    public Vector2 lastCheckpointPos = new Vector2(45f,-70f);
     [SerializeField] private GameObject loaderCanvas;
 
     void Awake()

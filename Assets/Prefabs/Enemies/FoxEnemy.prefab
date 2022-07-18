@@ -606,9 +606,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d59c635a15534d946877ed02b81ee7f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
-  healthController: {fileID: 0}
+  deathClip: {fileID: 8300000, guid: f7dad2507c1e6724691d558a7db62e83, type: 3}
   isActive: 0
+  shootClip: {fileID: 8300000, guid: 9f46274de9662fd47bd0df921641bb78, type: 3}
   speed: 4
   projSpeed: 200
   foxProjectilePrefab: {fileID: 8351260178347735595, guid: 6e977aabd24654f43979e1ea9fa917ea, type: 3}
@@ -654,7 +654,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ef1d0dbd1043e1429dc02879b0f7ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
 --- !u!61 &4572009147341827737
 BoxCollider2D:
   m_ObjectHideFlags: 0

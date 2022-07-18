@@ -31,8 +31,7 @@ public class HealthController : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
-            print("Killed");
+            gameObject.GetComponent<EnemyAI>().KillEntity();
         }
     }
 }

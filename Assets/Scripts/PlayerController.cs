@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float wallJumpMultiplier = 3f;
     [SerializeField] private float smoothTime = 0.3f;
     [SerializeField] private LayerMask wallLayer;
-    [SerializeField] private UnityEvent<Vector2,float> jumpEvent;
+    [SerializeField] private UnityEvent<Vector2, float> jumpEvent;
     #endregion
     #region  public fields
     public enum State
@@ -41,8 +41,10 @@ public class PlayerController : MonoBehaviour
     private float smootDampVar;
     private float halfWidth;
     private float halfHeight;
+    private Animator animator;
     #endregion
-    void Start(){
+    void Start()
+    {
         rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
         healthController = gameObject.GetComponent<HealthController>();
         currentState = State.grounded;
@@ -53,8 +55,7 @@ public class PlayerController : MonoBehaviour
         GameStateManager.Instance.OnGameStateChanged += OnGameStateChanged;
         halfWidth = gameObject.GetComponent<BoxCollider2D>().size.x / 2f;
         halfHeight = gameObject.GetComponent<BoxCollider2D>().size.y / 2f;
-        Debug.Log(halfWidth);
-        Debug.Log(halfHeight);
+        animator = gameObject.GetComponent<Animator>();
     }
     void Update()
     {
@@ -62,16 +63,19 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
+        animator.SetFloat("Velocity", Mathf.Abs(MoveV.x));
         switch (currentState)
         {
             case State.grounded:
                 timer = coyoteTime;
                 rigidbody2D.velocity = new Vector2(MoveV.x * horSpeed, rigidbody2D.velocity.y);
-
+                animator.SetBool("Grounded", true);
+                animator.SetBool("AirOrClimbing", false);
                 break;
             case State.air:
+                animator.SetBool("Grounded", false);
+                animator.SetBool("AirOrClimbing", true);
                 rigidbody2D.gravityScale = defaultGravityScale;
-
                 rigidbody2D.velocity = new Vector2(Mathf.SmoothDamp(rigidbody2D.velocity.x, MoveV.x * horSpeed, ref smootDampVar, smoothTime),
                 Mathf.Clamp(rigidbody2D.velocity.y, fallSpeedClamp, 100f));
 
@@ -83,9 +87,10 @@ public class PlayerController : MonoBehaviour
                     timer -= Time.fixedDeltaTime;
                 break;
             case State.climbing:
+                animator.SetBool("Grounded", false);
+                animator.SetBool("AirOrClimbing", true);
                 timer = coyoteTime;
                 rigidbody2D.velocity = new Vector2(MoveV.x * horSpeed, MoveV.y * verSpeed);
-
                 break;
         }
         ChangeState();
@@ -175,18 +180,20 @@ public class PlayerController : MonoBehaviour
         else if (rigidbody2D.velocity.x < -0.01f)
             gameObject.GetComponent<SpriteRenderer>().flipX = true;
     }
-    private void OnGameStateChanged(GameState newGameState){
+    private void OnGameStateChanged(GameState newGameState)
+    {
         bool stateSwitch = newGameState == GameState.GamePlay;
         enabled = stateSwitch;
         gameObject.GetComponent<Rigidbody2D>().simulated = stateSwitch;
         gameObject.GetComponent<HealthController>().enabled = stateSwitch;
         gameObject.GetComponentInChildren<AttackController>().enabled = stateSwitch;
     }
-    private void OnDestroy(){
+    private void OnDestroy()
+    {
         GameStateManager.Instance.OnGameStateChanged -= OnGameStateChanged;
     }
     private void OnDrawGizmos()
-    { 
+    {
         Vector2 groundPos = new Vector2(transform.position.x, transform.position.y - halfHeight);
         Vector2 leftPos = new Vector2(transform.position.x - halfWidth, transform.position.y);
         Vector2 rightPos = new Vector2(transform.position.x + halfWidth, transform.position.y);
@@ -204,20 +211,20 @@ public class PlayerController : MonoBehaviour
             {
                 case State.grounded:
                     rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpVelocity);
-                    jumpEvent.Invoke(transform.position,wallJumpDir);
+                    jumpEvent.Invoke(transform.position, wallJumpDir);
                     break;
                 case State.air:
                     if (timer > 0f)
                     {
                         rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpVelocity);
-                        jumpEvent.Invoke(transform.position,wallJumpDir);
+                        jumpEvent.Invoke(transform.position, wallJumpDir);
                     }
                     break;
                 case State.climbing:
                     if (wallJumpDir != 0f)
                     {
                         rigidbody2D.velocity = new Vector2(wallJumpDir * horSpeed * wallJumpMultiplier, jumpVelocity);
-                        jumpEvent.Invoke(transform.position,wallJumpDir);
+                        jumpEvent.Invoke(transform.position, wallJumpDir);
                     }
                     break;
             }

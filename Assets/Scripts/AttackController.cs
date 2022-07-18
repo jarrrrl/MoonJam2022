@@ -27,26 +27,37 @@ public class AttackController : MonoBehaviour
         transform.right = pos - (Vector2)transform.position;
         if (timer > 0f)
             timer -= Time.fixedDeltaTime;
+
+        if ((pos - (Vector2)transform.position).x > 0f)
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipY = false;
+        }
+        else
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipY = true;
+        }
     }
     public void Attack(InputAction.CallbackContext context)
     {
         if (context.started && timer <= 0f)
         {
+
             pos = camera.ScreenToWorldPoint(mouse.position.ReadValue());
             pos = pos - (Vector2)transform.position;
             pos.Normalize();
             pos *= 1.5f;
 
             Collider2D[] colliders = Physics2D.OverlapBoxAll((Vector2)transform.position + pos, boxSize, Vector2.Angle(Vector2.right, pos), enemyLayer);
-            foreach (Collider2D col in colliders){
+            foreach (Collider2D col in colliders)
+            {
 
                 //deal damage to every enemy
-                 print("hit");
-                 col.gameObject.GetComponent<HealthController>().ChangeHealth(-1);
+                print("hit");
+                col.gameObject.GetComponent<HealthController>().ChangeHealth(-1);
             }
             timer = attackCooldown;
             SoundManager.instance.PlaySound(slashClip);
-            //also add swipe animation
+            gameObject.GetComponent<Animator>().SetTrigger("Attack");
         }
     }
 }

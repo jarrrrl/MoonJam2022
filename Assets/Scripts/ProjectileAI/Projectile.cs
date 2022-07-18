@@ -5,7 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     // Start is called before the first frame update
-   public void OnShoot(float rotation)
+    public void OnShoot(float rotation)
     {
         Rigidbody2D rb = this.GetComponent<Rigidbody2D>();
         float speed = 5f;
@@ -17,5 +17,19 @@ public class Projectile : MonoBehaviour
         if (collision.CompareTag("Player"))
             collision.GetComponent<HealthController>().ChangeHealth(-1);
         else if (collision.CompareTag("Ground")) Destroy(gameObject);
+    }
+    void Awake()
+    {
+        GameStateManager.Instance.OnGameStateChanged += OnGameStateChanged;
+    }
+    private void OnGameStateChanged(GameState newGameState)
+    {
+        bool stateSwitch = newGameState == GameState.GamePlay;
+        enabled = stateSwitch;
+        gameObject.GetComponent<Rigidbody2D>().simulated = stateSwitch;
+    }
+    private void OnDestroy()
+    {
+        GameStateManager.Instance.OnGameStateChanged -= OnGameStateChanged;
     }
 }
