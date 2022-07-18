@@ -7,6 +7,7 @@ public class ScenelMusicManager : MonoBehaviour
 {
     [SerializeField] private AudioClip menuClip;
     [SerializeField] private AudioClip castleClip;
+    [SerializeField] private AudioClip cutClip;
     void Start()
     {
         SceneManager.sceneLoaded += StartPlayMusic;
@@ -20,6 +21,9 @@ public class ScenelMusicManager : MonoBehaviour
             case ("Castle1"):
                 SoundManager.instance.PlayMusic(castleClip);
                 break;
+            case ("Cutscene"):
+                SoundManager.instance.PlayMusic(cutClip);
+                break;
         }
     }
     private void StartPlayMusic(Scene scene, LoadSceneMode mode)
@@ -31,6 +35,9 @@ public class ScenelMusicManager : MonoBehaviour
                 break;
             case ("Castle1"):
                 SoundManager.instance.PlayMusic(castleClip);
+                break;
+            case ("Cutscene"):
+                SoundManager.instance.PlayMusic(cutClip);
                 break;
         }
     }
