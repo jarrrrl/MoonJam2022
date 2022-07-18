@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
         halfWidth = gameObject.GetComponent<BoxCollider2D>().size.x / 2f;
         halfHeight = gameObject.GetComponent<BoxCollider2D>().size.y / 2f;
         Debug.Log(halfWidth);
-        Debug.Log( halfHeight);
+        Debug.Log(halfHeight);
     }
     void Update()
     {

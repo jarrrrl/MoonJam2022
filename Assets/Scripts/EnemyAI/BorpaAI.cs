@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BorpaAI : EnemyAI
 {
+    [SerializeField] private AudioClip shootClip;
     Transform borpaTransform;
     Rigidbody2D rb;
     public LayerMask enemyMask;
@@ -45,7 +46,7 @@ public class BorpaAI : EnemyAI
     {
         Transform borpaProjectile = Instantiate(borpaProjectilePrefab, borpaTransform.position, borpaProjectilePrefab.rotation);
         borpaProjectile.GetComponent<Projectile>().OnShoot(borpaTransform.right.x);
-
+        SoundManager.instance.PlaySound(shootClip);
     }
     protected override void OnDestroy()
     {

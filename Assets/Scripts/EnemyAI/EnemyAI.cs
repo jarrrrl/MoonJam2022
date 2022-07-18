@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
+    [SerializeField] private AudioClip deathClip;
     public float health = 1f;
     public HealthController healthController;
     protected bool facingRight = false;
@@ -47,6 +48,7 @@ public class EnemyAI : MonoBehaviour
             playerTransform.gameObject.GetComponent<HealthController>().ChangeHealth(-1);
         else if (collision.collider.CompareTag("Enemy")) Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), collision.collider);
     }
+
 
     protected virtual void OnDestroy()
     {

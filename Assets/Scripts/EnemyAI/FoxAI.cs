@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FoxAI : EnemyAI
 {
+    [SerializeField] private AudioClip shootClip;
     Transform foxTransform;
     public float speed = 4f;
     public float projSpeed = 200f;
@@ -53,6 +54,7 @@ public class FoxAI : EnemyAI
 
 
                     foxFireProjectile.gameObject.SetActive(true);
+                    SoundManager.instance.PlaySound(shootClip);
                 }
             }
         }
