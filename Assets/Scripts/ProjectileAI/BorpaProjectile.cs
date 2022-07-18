@@ -14,7 +14,7 @@ public class BorpaProjectile : Projectile
         {
             SpawnGoo();
         }
-        else if(collision.collider.CompareTag("Player"))
+        else if (collision.collider.CompareTag("Player"))
             collision.collider.GetComponent<HealthController>().ChangeHealth(-1);
 
     }

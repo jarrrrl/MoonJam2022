@@ -121,9 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf05340a88638fb4a80101faea2e07bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
-  healthController: {fileID: 0}
+  deathClip: {fileID: 8300000, guid: f7dad2507c1e6724691d558a7db62e83, type: 3}
   isActive: 0
+  shootClip: {fileID: 8300000, guid: 2ebf2421dddc15a45b7fc6ae8197b1c0, type: 3}
   enemyMask:
     serializedVersion: 2
     m_Bits: 24

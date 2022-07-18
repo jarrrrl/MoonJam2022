@@ -9,7 +9,7 @@ public class Drip : MonoBehaviour
     public LayerMask layerMask;
     public float gooSpread;
     // Update is called once per frame
-  
+
 
     private void Start()
     {

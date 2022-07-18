@@ -24,5 +24,4 @@ public class FoxFire : Projectile
             else Destroy(gameObject);
         }
     }
-
 }

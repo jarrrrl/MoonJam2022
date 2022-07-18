@@ -5,8 +5,7 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
     [SerializeField] private AudioClip deathClip;
-    public float health = 1f;
-    public HealthController healthController;
+    private HealthController healthController;
     protected bool facingRight = false;
     protected Transform playerTransform;
     public bool isActive = false;
@@ -16,12 +15,13 @@ public class EnemyAI : MonoBehaviour
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         healthController = GetComponent<HealthController>();
+        GameStateManager.Instance.OnGameStateChanged += OnGameStateChanged;
     }
 
     protected virtual void Update()
     {
         Flip();
-        if (Vector3.Distance(transform.position, playerTransform.position) < 10f)
+        if (Vector3.Distance(transform.position, playerTransform.position) < activationDistance)
         {
             isActive = true;
         }
@@ -50,9 +50,21 @@ public class EnemyAI : MonoBehaviour
     }
 
 
-    protected virtual void OnDestroy()
+    protected void OnDestroy()
     {
-        //play basic sound here
+        GameStateManager.Instance.OnGameStateChanged -= OnGameStateChanged;
+        Destroy(gameObject);
     }
-
+    public virtual void KillEntity()
+    {
+        SoundManager.instance.PlaySound(deathClip);
+        Destroy(gameObject);
+    }
+    protected virtual void OnGameStateChanged(GameState newGameState)
+    {
+        bool stateSwitch = newGameState == GameState.GamePlay;
+        enabled = stateSwitch;
+        gameObject.GetComponent<Rigidbody2D>().simulated = stateSwitch;
+        gameObject.GetComponent<HealthController>().enabled = stateSwitch;
+    }
 }

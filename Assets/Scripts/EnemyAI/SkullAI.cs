@@ -33,8 +33,8 @@ public class SkullAI : EnemyAI
     {
         if (collision.CompareTag("Player")) collision.GetComponent<HealthController>().ChangeHealth(-1);
     }
-    protected override void OnDestroy()
-    {
-        //skull noise here
-    }
+    // public override void OnDestroy()
+    // {
+    //     //skull noise here
+    // }
 }

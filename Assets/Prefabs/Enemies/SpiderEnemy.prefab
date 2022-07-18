@@ -143,8 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9e5b1d7a51cebb42bc277f1be681432, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
-  healthController: {fileID: 0}
+  deathClip: {fileID: 8300000, guid: 2de12ceb04ed2e94b8a500a4b5daa688, type: 3}
   isActive: 0
   layerMask:
     serializedVersion: 2

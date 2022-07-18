@@ -60,9 +60,9 @@ public class FoxAI : EnemyAI
         }
     }
 
-    protected override void OnDestroy()
-    {
-        //play fox noise here
-    }
+    // public override void OnDestroy()
+    // {
+    //     //play fox noise here
+    // }
 
 }
