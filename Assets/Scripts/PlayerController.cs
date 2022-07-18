@@ -34,11 +34,13 @@ public class PlayerController : MonoBehaviour
     private HealthController healthController;
     private Vector2 MoveV;
     private Vector2 verBox = new(0.1f, 0.85f);
-    private Vector2 horBox = new(0.95f, 0.1f);
+    private Vector2 horBox = new(0.5f, 0.1f);
     private float timer;
     private bool stopJump;
     private float defaultGravityScale;
     private float smootDampVar;
+    private float halfWidth;
+    private float halfHeight;
     #endregion
     void Start(){
         rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
@@ -49,6 +51,10 @@ public class PlayerController : MonoBehaviour
         wallJumpDir = 0f;
         defaultGravityScale = rigidbody2D.gravityScale;
         GameStateManager.Instance.OnGameStateChanged += OnGameStateChanged;
+        halfWidth = gameObject.GetComponent<BoxCollider2D>().size.x / 2f;
+        halfHeight = gameObject.GetComponent<BoxCollider2D>().size.y / 2f;
+        Debug.Log(halfWidth);
+        Debug.Log( halfHeight);
     }
     void Update()
     {
@@ -87,9 +93,9 @@ public class PlayerController : MonoBehaviour
     private void ChangeState()
     {
         wallJumpDir = 0f;
-        Collider2D groundCol = Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y - 0.42f), horBox, 0f, wallLayer);
-        Collider2D leftCol = Physics2D.OverlapBox(new Vector2(transform.position.x - 0.5f, transform.position.y), verBox, 0f, wallLayer);
-        Collider2D rightCol = Physics2D.OverlapBox(new Vector2(transform.position.x + 0.5f, transform.position.y), verBox, 0f, wallLayer);
+        Collider2D groundCol = Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y - halfHeight), horBox, 0f, wallLayer);
+        Collider2D leftCol = Physics2D.OverlapBox(new Vector2(transform.position.x - halfWidth, transform.position.y), verBox, 0f, wallLayer);
+        Collider2D rightCol = Physics2D.OverlapBox(new Vector2(transform.position.x + halfWidth, transform.position.y), verBox, 0f, wallLayer);
         switch (currentState)
         {
             case State.grounded:
@@ -180,10 +186,10 @@ public class PlayerController : MonoBehaviour
         GameStateManager.Instance.OnGameStateChanged -= OnGameStateChanged;
     }
     private void OnDrawGizmos()
-    {
-        Vector2 groundPos = new Vector2(transform.position.x, transform.position.y - 0.42f);
-        Vector2 leftPos = new Vector2(transform.position.x - 0.5f, transform.position.y);
-        Vector2 rightPos = new Vector2(transform.position.x + 0.5f, transform.position.y);
+    { 
+        Vector2 groundPos = new Vector2(transform.position.x, transform.position.y - halfHeight);
+        Vector2 leftPos = new Vector2(transform.position.x - halfWidth, transform.position.y);
+        Vector2 rightPos = new Vector2(transform.position.x + halfWidth, transform.position.y);
         Gizmos.DrawWireCube(groundPos, horBox);
         Gizmos.DrawWireCube(leftPos, verBox);
         Gizmos.DrawWireCube(rightPos, verBox);
