@@ -11,7 +11,7 @@ public class GooDrop : Projectile
     {
         if (collision.collider.CompareTag("Player"))
             collision.collider.GetComponent<HealthController>().ChangeHealth(-1);
-        else if (collision.collider.CompareTag("Enemy")) Destroy(gameObject);
+        else if (collision.collider.CompareTag("Enemy") || collision.collider.CompareTag("Ground")) Destroy(gameObject);
         GameObject GooFFX = Instantiate(GooDropFFXPrefab, this.transform.position, Quaternion.identity);
         Destroy(GooFFX, 1f);
     }
