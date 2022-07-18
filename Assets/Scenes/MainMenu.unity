@@ -2149,6 +2149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuClip: {fileID: 8300000, guid: 66e93efee96df8f40845e8caccc95ef5, type: 3}
   castleClip: {fileID: 8300000, guid: 88adf05d80a17ef42b1cc61f2fe618ec, type: 3}
+  cutClip: {fileID: 8300000, guid: def47be7b14a48d499540effd13886e8, type: 3}
 --- !u!1 &1286279229
 GameObject:
   m_ObjectHideFlags: 0
