@@ -7,6 +7,7 @@ public class AttackController : MonoBehaviour
 {
     [SerializeField] LayerMask enemyLayer;
     [SerializeField] private float attackCooldown = 0.5f;
+    [SerializeField] private AudioClip slashClip;
     private Vector2 boxSize = new(2f, 1f);
     private new Camera camera;
     private new Rigidbody2D rigidbody2D;
@@ -43,6 +44,7 @@ public class AttackController : MonoBehaviour
                 //col.gameObject.GetComponent<HealthController>().ChangeHealth(-1);
             }
             timer = attackCooldown;
+            SoundManager.instance.PlaySound(slashClip);
             //also add swipe animation
         }
     }

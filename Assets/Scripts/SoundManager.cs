@@ -27,6 +27,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlayMusic(AudioClip clip)
     {
+        musicSource.Stop();
         musicSource.PlayOneShot(clip);
     }
 
@@ -48,5 +49,6 @@ public class SoundManager : MonoBehaviour
     //[SerializeField] private AudioClip clip;
 
     //this command plays this clip once
-    //SoundManager.instance.PlaySound(clip);
+    //SoundManager.instance.PlaySound(clip); for effects
+    //SoundManager.instance.PlayMusic(clip); for music
 }
