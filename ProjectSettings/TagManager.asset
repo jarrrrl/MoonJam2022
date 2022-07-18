@@ -9,6 +9,8 @@ TagManager:
   - Projectile
   - NavPoint
   - Ground
+  - Checkpoint
+  - LevelManager
   layers:
   - Default
   - TransparentFX

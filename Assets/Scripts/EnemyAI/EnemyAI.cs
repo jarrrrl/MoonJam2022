@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    public float health = 10f;
+    public float health = 1f;
     public HealthController healthController;
     protected bool facingRight = false;
     protected Transform playerTransform;
@@ -40,6 +40,12 @@ public class EnemyAI : MonoBehaviour
                 transform.localScale = tempVec;
             }
         }
+    }
+    protected void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Player"))
+            playerTransform.gameObject.GetComponent<HealthController>().ChangeHealth(-1);
+        else if (collision.collider.CompareTag("Enemy")) Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), collision.collider);
     }
     
 }

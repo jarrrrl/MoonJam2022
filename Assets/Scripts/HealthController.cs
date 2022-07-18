@@ -4,23 +4,18 @@ using UnityEngine;
 
 public class HealthController : MonoBehaviour
 {
-    public float health;
+    protected float health;
     // Start is called before the first frame update
     void Start()
     {
-        if (CompareTag("Player")) health = 20f;
-        else health = GetComponent<EnemyAI>().health;
+        health = 1f;
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void ChangeHealth(float newHealth)
     {
-        health = newHealth;
+        health += newHealth;
         print(health);
         if(newHealth <= 0)
         {
@@ -30,7 +25,14 @@ public class HealthController : MonoBehaviour
 
     private void KillEntity()
     {
-        Destroy(gameObject);
-        print("Killed");
+        if (CompareTag("Player"))
+        {
+            GetComponent<RespawnPlayer>().Respawn();
+        }
+        else
+        {
+            Destroy(gameObject);
+            print("Killed");
+        }
     }
 }

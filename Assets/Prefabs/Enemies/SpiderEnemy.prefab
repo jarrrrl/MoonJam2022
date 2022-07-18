@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 5026709397329905345}
   - component: {fileID: 3238664850779938820}
   - component: {fileID: 4948741638912411018}
-  - component: {fileID: 8052467500778744315}
   - component: {fileID: 8426633682238972346}
   - component: {fileID: 8562329495371471333}
+  - component: {fileID: 5358105558444176802}
+  - component: {fileID: 8581186008003697864}
   m_Layer: 6
   m_Name: SpiderEnemy
   m_TagString: Enemy
@@ -31,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 4052692592273376549}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 6197056623017412966, guid: 25e3c3e2a286eee48bba19e8d339e062, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3437e1580136dac489875bf9894159cd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,7 +100,7 @@ Animator:
   m_GameObject: {fileID: 4052692592273376549}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: baa67eee7fa8b9c4ba2715714aefac30, type: 2}
+  m_Controller: {fileID: 9100000, guid: fa2baf3f01d04a642a68ae5db606cde0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -130,39 +131,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!60 &8052467500778744315
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4052692592273376549}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
-    newSize: {x: 0.64, y: 0.64}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.0024125606, y: -0.013027405}
-      - {x: -0.092401356, y: -0.036885876}
-      - {x: -0.12720406, y: -0.066332206}
-      - {x: -0.13845107, y: -0.17010912}
-      - {x: 0.07508111, y: -0.16938516}
-      - {x: 0.08446829, y: -0.12713473}
-      - {x: 0.08902417, y: -0.03195164}
-      - {x: 0.07184768, y: -0.0135087045}
 --- !u!114 &8426633682238972346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,6 +149,9 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 25
+  jumpDistance: 0
+  jumpHeight: 0
+  inAir: 0
 --- !u!114 &8562329495371471333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,4 +164,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ef1d0dbd1043e1429dc02879b0f7ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+--- !u!61 &5358105558444176802
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4052692592273376549}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.9375, y: 0.75}
+    newSize: {x: 0.64, y: 0.64}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.9375, y: 0.75}
+  m_EdgeRadius: 0
+--- !u!114 &8581186008003697864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4052692592273376549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library:
+  - m_Name: Jump
+    m_Hash: 0
+    m_CategoryList:
+    - m_Name: Entry_0
+      m_Hash: 0
+      m_Sprite: {fileID: 21300000, guid: 3437e1580136dac489875bf9894159cd, type: 3}
+    - m_Name: Entry
+      m_Hash: 0
+      m_Sprite: {fileID: 21300000, guid: 65a8107cb0f5ecd49a5207f4c42aca5b, type: 3}
+  m_SpriteLibraryAsset: {fileID: 0}

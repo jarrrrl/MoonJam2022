@@ -9,15 +9,19 @@ public class SpiderAI : EnemyAI
     public LayerMask layerMask;
     private Vector2 jumpForce;
     private bool jumpEnabled = false;
+    private Animator animator;
     
     public float jumpDistance;
     public float jumpHeight;
+    public bool inAir;
+
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spiderTransform = transform;
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        animator = GetComponent<Animator>();
         
     }
     // Update is called once per frame
@@ -29,13 +33,13 @@ public class SpiderAI : EnemyAI
         {
             StartCoroutine(Jump());
         }
-    }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.CompareTag("Player"))
-            Destroy(this.gameObject);
-        else if (collision.collider.CompareTag("Enemy")) Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), collision.collider);
+        RaycastHit2D isGrounded = Physics2D.Linecast(spiderTransform.position, ((Vector2)spiderTransform.position) + Vector2.down, layerMask);
+        Debug.DrawLine(spiderTransform.position, ((Vector2)spiderTransform.position) + Vector2.down);
+        print(isGrounded.distance);
+        if (!isGrounded) inAir = true;
+        else inAir = false;
+        animator.SetBool("inAir", inAir);
     }
 
     private IEnumerator Jump()
