@@ -165,9 +165,9 @@ public class PlayerController : MonoBehaviour
     private void FlipSprite()
     {
         if (rigidbody2D.velocity.x > 0.01f)
-            gameObject.GetComponent<SpriteRenderer>().flipX = true;
-        else if (rigidbody2D.velocity.x < -0.01f)
             gameObject.GetComponent<SpriteRenderer>().flipX = false;
+        else if (rigidbody2D.velocity.x < -0.01f)
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
     }
     private void OnGameStateChanged(GameState newGameState){
         bool stateSwitch = newGameState == GameState.GamePlay;
