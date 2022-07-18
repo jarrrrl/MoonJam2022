@@ -5,7 +5,6 @@ using UnityEngine;
 public class FoxAI : EnemyAI
 {
     Transform foxTransform;
-    Rigidbody2D rb;
     public float speed = 4f;
     public float projSpeed = 200f;
     public GameObject foxProjectilePrefab;
@@ -13,21 +12,22 @@ public class FoxAI : EnemyAI
     public List<FoxFire> foxFireProjectiles;
 
     public GameObject playerObject;
-
-
     public Vector3 direction = new Vector3(0, 0, 1);
+
+    public float foxFireLastTime = 5f;
+    public float reloadTime = 3f;
+
     private void Start()
     {
-        foxTransform = this.transform;
-        rb = GetComponent<Rigidbody2D>();
+        foxTransform = transform;
         playerObject = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(Shoot());
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         foxFireRing.transform.RotateAround(foxTransform.position, direction, projSpeed * Time.deltaTime);
-
 
     }
 
@@ -38,17 +38,17 @@ public class FoxAI : EnemyAI
 
             foreach (FoxFire foxFireProjectile in foxFireProjectiles)
             {
-                if (!foxFireProjectile.gameObject.activeSelf || Vector3.Distance(transform.position, playerObject.transform.position) > 20f)
+                if (!foxFireProjectile.gameObject.activeSelf || !isActive)
                 {
                     yield return null;
                 }
                 else
                 {
-                    yield return new WaitForSeconds(3f);
+                    yield return new WaitForSeconds(reloadTime);
 
                     foxFireProjectile.gameObject.SetActive(false);
                     GameObject foxFireObject = Instantiate(foxProjectilePrefab, foxFireProjectile.transform.position, Quaternion.identity);
-                    yield return new WaitForSeconds(10f);
+                    yield return new WaitForSeconds(foxFireLastTime);
                     Destroy(foxFireObject);
 
 

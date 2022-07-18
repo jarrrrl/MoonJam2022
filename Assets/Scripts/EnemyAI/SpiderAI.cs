@@ -5,25 +5,27 @@ using UnityEngine;
 public class SpiderAI : EnemyAI
 {
     private Rigidbody2D rb;
-    private bool isActive = false;
     private Transform spiderTransform;
-    private Transform playerTransform;
     public LayerMask layerMask;
     private Vector2 jumpForce;
-    private bool facingRight;
+    private bool jumpEnabled = false;
+    
+    public float jumpDistance;
+    public float jumpHeight;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        spiderTransform = this.transform;
+        spiderTransform = transform;
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        
     }
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-
+        base.Update();
         RaycastHit2D isPlayerInRange = Physics2D.Linecast(spiderTransform.position, playerTransform.position, layerMask);
-        if (isPlayerInRange.collider != null && !isActive && isPlayerInRange.transform.CompareTag("Player") && isPlayerInRange.distance <= 6.0f)
+        if (isPlayerInRange.collider != null && !jumpEnabled && isPlayerInRange.transform.CompareTag("Player") && isPlayerInRange.distance <= 6.0f)
         {
             StartCoroutine(Jump());
         }
@@ -33,30 +35,31 @@ public class SpiderAI : EnemyAI
     {
         if (collision.collider.CompareTag("Player"))
             Destroy(this.gameObject);
+        else if (collision.collider.CompareTag("Enemy")) Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), collision.collider);
     }
 
     private IEnumerator Jump()
     {
-        isActive = true;
+        jumpEnabled = true;
         while (true)
         {
-            if (spiderTransform.position.x < playerTransform.position.x && facingRight) Flip();
-            if (spiderTransform.position.x > playerTransform.position.x && !facingRight) Flip();
-
-            jumpForce = new Vector2(Random.Range(5f, 10f), Random.Range(3f, 5f));
-            if (facingRight)
-                rb.AddForce(new Vector2(-jumpForce.x, jumpForce.y), ForceMode2D.Impulse);
+            if (isActive)
+            {
+                jumpDistance = Random.Range(5f, 8f);
+                jumpHeight = Random.Range(5f, 8f);
+                jumpForce = new Vector2(jumpDistance, jumpHeight);
+                if (facingRight)
+                    rb.AddForce(new Vector2(-jumpForce.x, jumpForce.y), ForceMode2D.Impulse);
+                else
+                    rb.AddForce(new Vector2(jumpForce.x, jumpForce.y), ForceMode2D.Impulse);
+                yield return new WaitForSeconds(3f);
+            }
             else
-                rb.AddForce(new Vector2(jumpForce.x, jumpForce.y), ForceMode2D.Impulse);
-            yield return new WaitForSeconds(3f);
+            {
+                jumpEnabled = false;
+                break;
+            }
         }
     }
 
-    private void Flip()
-    {
-        facingRight = !facingRight;
-        Vector3 tempVec = spiderTransform.localScale;
-        tempVec.x *= -1;
-        spiderTransform.localScale = tempVec;
-    }
 }
