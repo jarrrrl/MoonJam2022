@@ -29,4 +29,8 @@ public class SkullAI : EnemyAI
             aiPath.canMove = false;
         }
     }
+    protected override void OnDestroy()
+    {
+        //skull noise here
+    }
 }

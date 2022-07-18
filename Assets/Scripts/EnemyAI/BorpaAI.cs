@@ -47,5 +47,9 @@ public class BorpaAI : EnemyAI
         borpaProjectile.GetComponent<Projectile>().OnShoot(borpaTransform.right.x);
 
     }
+    protected override void OnDestroy()
+    {
+        //borpa noise here
+    }
 
 }

@@ -64,5 +64,9 @@ public class SpiderAI : EnemyAI
             }
         }
     }
+    protected override void OnDestroy()
+    {
+        //spider noise here
+    }
 
 }
