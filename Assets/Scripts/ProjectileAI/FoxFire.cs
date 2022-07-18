@@ -17,8 +17,17 @@ public class FoxFire : Projectile
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag.Equals("Player"))
-            Destroy(this.gameObject);
+        if (collision.CompareTag("Player"))
+        {
+            if(collision.transform.parent != null)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                gameObject.SetActive(false);
+            }
+        }
     }
 
 }

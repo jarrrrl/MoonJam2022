@@ -543,6 +543,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d59c635a15534d946877ed02b81ee7f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 10
+  healthController: {fileID: 0}
   speed: 4
   projSpeed: 200
   foxProjectilePrefab: {fileID: 8351260178347735595, guid: 6e977aabd24654f43979e1ea9fa917ea, type: 3}
@@ -592,7 +594,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6067551910881226975}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -604,7 +606,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!114 &7637029462916831017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -617,3 +619,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ef1d0dbd1043e1429dc02879b0f7ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
